@@ -36,8 +36,20 @@ const routes: Routes = [
     loadChildren: () => import('./evaluar/evaluar.module').then( m => m.EvaluarPageModule)
   },
   {
+    path: 'evaluar/:id',
+    loadChildren: () => import('./evaluar/evaluar.module').then( m => m.EvaluarPageModule)
+  },
+  {
     path: 'evaluados',
     loadChildren: () => import('./evaluados/evaluados.module').then( m => m.EvaluadosPageModule)
+  },
+  {
+    path: 'evaluaciones',
+    loadChildren: () => import('./evaluaciones/evaluaciones.module').then( m => m.EvaluacionesPageModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
   }
 ];
 
