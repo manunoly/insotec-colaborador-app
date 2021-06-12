@@ -18,13 +18,18 @@ export class ApiService {
   getHeader() {
     return {
       headers: new HttpHeaders({
-        Authorization: `Bearer ${this.currentAccessToken}`
+        Authorization: `Bearer ${this.currentAccessToken}`,
+        Accept: 'application/json'
       })
     }
   }
 
   setHeader(token: string){
     this.currentAccessToken = token;
+  }
+
+  async getData(url){
+    return this.http.get(`${this.url}/${url}`, this.getHeader()).toPromise();
   }
 
   async getUser(){

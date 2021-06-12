@@ -1,0 +1,49 @@
+<app-header-insotec [inicio]=true [fin]=true></app-header-insotec>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Resultado de evaluación</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h3>Colaborador: <b> {{data?.user?.name}} </b></h3>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <h3 class="fullText ion-text-capitalize">Matriz:<b> {{data?.matriz?.nombre}} </b></h3>
+          </ion-col>
+          <ion-col size="6" class="ion-text-end">
+            <h3 class="fullText">Fecha:<b> {{data?.created_at | date: 'dd/MM/yy'}} </b></h3>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="8">
+        <h5 class="fullText ion-text-capitalize"><b> Comportamiento </b></h5>
+      </ion-col>
+      <ion-col size="4" class="ion-text-center">
+        <h5 class="fullText"> <b> Nota </b></h5>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let item of data?.comportamientos" (click)="verComportamientoDetalle(item?.comportamiento_id, data?.matriz)">
+      <ion-col size="8">
+        <h3 class="fullText ion-text-capitalize ion-padding-start"> {{item?.comportamiento_id}} </h3>
+      </ion-col>
+      <ion-col size="4" class="ion-text-center">
+        <h3 class="fullText"> <b> {{item?.valor_evaluacion}} </b></h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

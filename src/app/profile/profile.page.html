@@ -1,9 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header-insotec [inicio]=false [fin]=true></app-header-insotec>
 
 <ion-content>
-  <pre> {{userData | json }}  </pre>
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+        <ion-col size="12" class="ion-align-self-center ion-text-center">
+          <ion-avatar style="display:block; margin:auto; height: 100px; width: 100px;">
+            <img [src]="'assets/icon/favicon.png'">
+            <!-- <img [src]="userData ? userData.profile_photo_url: 'assets/icon/favicon.png'"> -->
+          </ion-avatar>
+          <div class="ion-text-capitalize">
+            <h3>{{userData?.name}}</h3>
+          </div>
+          <h5>{{userData?.email}}</h5>
+          <div class="ion-text-capitalize">
+            <h5>Agencia: {{userData?.agencia?.nombre}}</h5>
+            <h5>Sucursal: {{userData?.agencia?.sucursal?.nombre}}</h5>
+          </div>
+          <div class="ion-text-capitalize">
+            <h5>Cargo: {{userData?.cargo?.nombre}}</h5>
+          </div>
+          <div *ngIf="userData?.evaluador" class="ion-text-capitalize">
+            <h5>Evaluador: {{userData?.evaluador?.name}}</h5>
+          </div>
+          <h5>Roles</h5>
+          <div *ngIf="userData?.roles" >
+            <span *ngFor="let item of userData.roles">
+              <ion-chip>
+                <ion-label color="secondary">{{item.name}}</ion-label>
+              </ion-chip>
+            </span>
+          </div>
+          <ion-button (click)="logout()" shape="round" fill="outline">Cerrar Sessión</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>

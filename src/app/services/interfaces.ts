@@ -1,10 +1,8 @@
-
-
 export interface UserIterface {
   id: number;
   name: string;
   email: string;
-  email_verified_at?: Date;
+  email_verified_at: Date;
   current_team_id: number;
   profile_photo_path: string;
   created_at: Date;
@@ -12,8 +10,12 @@ export interface UserIterface {
   evaluador_id: number;
   agencia_id: number;
   cargo_id: number;
-  roles: string[];
   profile_photo_url: string;
+  roles: RoleIterface[];
+  evaluador: UserIterface;
+  evaluados: UserIterface[];
+  cargo: CargoIterface;
+  agencia: AgenciaIterface;
 }
 
   export interface RoleIterface {
@@ -62,4 +64,24 @@ export interface AgenciaIterface {
   updated_at: Date;
   sucursal: SucursalIterface;
 }
-
+export interface MatrizIterface {
+  id: number;
+  nombre: string;
+  evaluaciones_minimo: number;
+  activo: number;
+  created_at: Date;
+  updated_at: Date;
+}
+export interface EvaluacionInterface {
+  id: number;
+  user_id: number;
+  matriz_id: number;
+  sucursal_id: number;
+  agencia_id: number;
+  usuario_evaluador: string;
+  observaciones: string;
+  nota_promedio: string;
+  created_at: Date;
+  updated_at: Date;
+  matriz: MatrizIterface;
+}

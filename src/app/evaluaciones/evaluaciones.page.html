@@ -1,20 +1,94 @@
 <app-header-insotec [inicio]=true [fin]=true></app-header-insotec>
 
-<ion-content class="ion-padding">
-  <table datatable class="row-border hover">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>First name</th>
-        <th>Last name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>Foo</td>
-        <td>Bar</td>
-      </tr>
-    </tbody>
-  </table>
+<ion-content class="ion-text-center">
+  <div *ngIf="data && data.length > 0">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Mis Resultados</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="5">
+              <h3 class="fullText"><b> Mejor evaluación:</b></h3>
+            </ion-col>
+            <ion-col size="3" size-lg>
+              2.2
+            </ion-col>
+            <ion-col size="4" size-lg>
+              564654654
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <h3 class="fullText"><b> Peor evaluación:</b></h3>
+            </ion-col>
+            <ion-col size="3" size-lg>
+
+            </ion-col>
+            <ion-col size="4" size-lg>
+
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <h3 class="fullText"><b> Promedio</b></h3>
+            </ion-col>
+            <ion-col size="3" size-lg>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <small *ngIf="matriz.length == 1"  class="ion-text-start ion-padding"><span class="matrizName">{{matriz.join(',')}}</span> (Matriz de Comportamiento)</small>
+
+    <ion-list>
+      <ion-item class="ion-no-padding ion-no-margin">
+        <ion-grid class="ion-no-padding ion-no-margin">
+          <ion-row class="ion-no-padding ion-no-margin">
+            <ion-col size="3" class="ion-no-padding ion-no-margin ion-padding-start">
+              <b>Fecha</b>
+            </ion-col>
+            <ion-col size="2" *ngIf="matriz.length > 1" class="ion-no-padding ion-no-marginion-text-capitalize">
+              <b>Matriz</b>
+            </ion-col>
+            <ion-col class="ion-align-self-center ion-text-center ion-no-padding ion-no-marginion-text-capitalize">
+              <b>Evaluador</b>
+            </ion-col>
+            <ion-col size="2" class="ion-align-self-end ion-text-end ion-no-padding ion-no-marginion-text-capitalize">
+              <b>Nota</b>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item *ngFor="let evaluacion of data" class="ion-no-padding ion-no-margin" [routerLink]="['/evaluaciones-detalles/' + evaluacion.id]">
+        <ion-grid class="ion-no-padding ion-no-margin">
+          <ion-row class="ion-no-padding ion-no-margin">
+            <ion-col size="3" class="ion-no-padding ion-no-margin ion-padding-start">
+             <small> {{evaluacion?.created_at | date: 'dd/MM/yy'}} </small>
+            </ion-col>
+            <ion-col size="2" *ngIf="matriz.length > 1" class="ion-no-padding ion-no-marginion-text-capitalize">
+              {{evaluacion?.matriz?.nombre}}
+            </ion-col>
+            <ion-col class="ion-align-self-center ion-text-center ion-no-padding ion-no-marginion-text-capitalize">
+              {{evaluacion?.usuario_evaluador}}
+            </ion-col>
+            <ion-col size="2" class="ion-align-self-end ion-text-end ion-no-padding ion-no-marginion-text-capitalize">
+              {{evaluacion?.nota_promedio}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+
+
+  </div>
+<div *ngIf="data && data.length == 0">
+  <h5 class="ion-padding">Usted No tiene evaluaciones</h5>
+</div>
 </ion-content>

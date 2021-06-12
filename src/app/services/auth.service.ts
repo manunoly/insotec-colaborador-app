@@ -70,7 +70,7 @@ export class AuthService {
   }
 
   hasRole(role: string): boolean {
-      if (!this.currentUser.value || !this.currentUser.value.roles.includes(role)) {
+      if (!this.currentUser.value || !this.currentUser.value.roles.includes(role as any)) {
         return false;
       }
     return true;

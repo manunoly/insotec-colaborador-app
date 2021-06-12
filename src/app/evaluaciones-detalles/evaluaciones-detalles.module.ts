@@ -5,9 +5,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProfilePageRoutingModule } from './profile-routing.module';
+import { EvaluacionesDetallesPageRoutingModule } from './evaluaciones-detalles-routing.module';
 
-import { ProfilePage } from './profile.page';
+import { EvaluacionesDetallesPage } from './evaluaciones-detalles.page';
 
 @NgModule({
   imports: [
@@ -15,8 +15,8 @@ import { ProfilePage } from './profile.page';
     FormsModule,
     SharedModule,
     IonicModule,
-    ProfilePageRoutingModule
+    EvaluacionesDetallesPageRoutingModule
   ],
-  declarations: [ProfilePage]
+  declarations: [EvaluacionesDetallesPage]
 })
-export class ProfilePageModule {}
+export class EvaluacionesDetallesPageModule {}

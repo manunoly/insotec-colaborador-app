@@ -38,6 +38,9 @@ export class UtilService {
     return throwError(errorMessage);
   }
 
+  async modalComportamiento(comportamiento_id, matriz){
+    return;
+  }
 
   async showLoading(msg = 'Espere') {
     this.loading = await this.loadingController.create({

@@ -1,3 +1,4 @@
+import { UserIterface } from './../services/interfaces';
 import { UtilService } from './../services/util.service';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  userData;
+  userData:UserIterface;
 
   constructor(private auth:AuthService, private util: UtilService) { }
 
@@ -28,4 +29,7 @@ export class ProfilePage implements OnInit {
     }
   }
 
+  logout(){
+    this.auth.logout();
+  }
 }

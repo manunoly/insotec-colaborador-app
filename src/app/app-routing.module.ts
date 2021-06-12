@@ -54,6 +54,10 @@ const routes: Routes = [
   {
     path: 'inicio',
     loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+  {
+    path: 'evaluaciones-detalles/:id',
+    loadChildren: () => import('./evaluaciones-detalles/evaluaciones-detalles.module').then( m => m.EvaluacionesDetallesPageModule)
   }
 ];
 
