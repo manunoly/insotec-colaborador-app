@@ -1,59 +1,12 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Inside</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="logout()">
-        <ion-icon slot="icon-only" name="log-out"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header-insotec [inicio]="false" [fin]="false"></app-header-insotec>
 
 <ion-content class="centerContent">
   <div>
     <ion-grid>
-      <ion-row>
-        <ion-col size="6" [routerLink]="['/evaluaciones']" routerLinkActive="router-link-active">
-          <ion-card text-center padding color="secondary">
-            <ion-icon class="menu-icon" name="person"></ion-icon>
-            <h6>Mis Evaluaciones</h6>
-          </ion-card>
+      <ion-row class="ion-align-items-center">
+        <ion-col class="ion-align-items-center ion-text-center" size="12" [routerLink]="['/inicio']" routerLinkActive="router-link-active">
+            <h1>Insotec</h1>
         </ion-col>
-        <ion-col size="6">
-          <ion-card text-center padding color="secondary" [routerLink]="['/profile']" routerLinkActive="router-link-active" >
-            <ion-icon class="menu-icon" name="settings"></ion-icon>
-            <h6>Mi Perfil</h6>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-card text-center padding color="secondary" [routerLink]="['/evaluados']" routerLinkActive="router-link-active">
-            <ion-icon class="menu-icon" name="people"></ion-icon>
-            <h6>Mis Evaluados</h6>
-          </ion-card>
-        </ion-col>
-        <ion-col size="6">
-          <ion-card text-center padding color="secondary"  [routerLink]="['/evaluar']" routerLinkActive="router-link-active">
-            <ion-icon class="menu-icon" name="newspaper"></ion-icon>
-            <h6>Evaluar</h6>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="6">
-          <ion-card text-center padding color="secondary"  [routerLink]="['/dashboard']" routerLinkActive="router-link-active">
-            <ion-icon class="menu-icon" name="bar-chart"></ion-icon>
-            <h6>Dashboard</h6>
-          </ion-card>
-        </ion-col>
-        <ion-col size="6">
-            <ion-card text-center padding color="secondary">
-              <ion-icon class="menu-icon" name="calendar"></ion-icon>
-              <h6>Appointment</h6>
-            </ion-card>
-          </ion-col>
       </ion-row>
     </ion-grid>
   </div>

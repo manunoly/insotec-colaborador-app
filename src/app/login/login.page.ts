@@ -11,7 +11,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  credentials: FormGroup;
+  loginForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.credentials = this.fb.group({
+    this.loginForm = this.fb.group({
       email: ['manunoly@gmail.com', [Validators.required, Validators.email]],
       password: ['123456789', [Validators.required,Validators.min(8)]],
     });
@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
     const loading = await this.loadingController.create();
     try {
       await loading.present();
-      const user = await this.auth.login(this.credentials.value);
+      const user = await this.auth.login(this.loginForm.value);
       await loading.dismiss();
       this.router.navigateByUrl('/home', { replaceUrl: true });
 

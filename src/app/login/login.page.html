@@ -1,10 +1,4 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
+<!-- <ion-content>
   <form (ngSubmit)="login()" [formGroup]="credentials">
     <div class="input-group">
       <ion-item>
@@ -17,4 +11,53 @@
 
     <ion-button type="submit" expand="block" [disabled]="!credentials.valid">Log in</ion-button>
   </form>
+</ion-content> -->
+
+<app-header-insotec [inicio]="false" [fin]="false"></app-header-insotec>
+
+<ion-content class="ion-padding">
+  <div>
+    <ion-text color="primary">
+      <h1 class="ion-text-center">
+          Bienvenido
+      </h1>
+    </ion-text>
+    <br>
+    <ion-grid class="ion-padding ion-text-center">
+        <br>
+        <form (ngSubmit)="login()" [formGroup]="loginForm">
+            <ion-row class="ion-padding">
+                <ion-col>
+                    <ion-item class="ion-text-lowercase">
+                        <ion-label position="floating" color="primary">
+                            <span class="ion-text-capitalize"> Email </span>
+                        </ion-label>
+                        <ion-input formControlName="email"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="floating" color="primary">
+                            Contraseña
+                        </ion-label>
+                        <ion-input type="password" formControlName="password"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-padding">
+                <ion-col size="8" offset="2">
+                    <ion-button [disabled]="!loginForm.valid" fill="outline" expand="block" shape="round" type="submit">
+                        Login
+                    </ion-button>
+                </ion-col>
+                <ion-col size="10" offset="1">
+                    <ion-button size="small" fill="clear" expand="block" shape="round" routerLink="/olvidar-contrasena">
+                        <small> Olvidé mi contraseña</small>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </form>
+        <br><br>
+    </ion-grid>
+  </div>
 </ion-content>

@@ -1,0 +1,40 @@
+<app-header-insotec [inicio]=false [fin]=true></app-header-insotec>
+
+  <ion-content class="ion-padding">
+      <ion-grid class="roundGrid">
+        <ion-row class="ion-align-items-center">
+          <ion-col size="12" [routerLink]="['/evaluaciones']" routerLinkActive="router-link-active" class="ion-align-self-center">
+            <ion-card class="borders">
+              <ion-icon class="menu-icon" name="person"></ion-icon>
+              <h6>Mis Evaluaciones</h6>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="12" [routerLink]="['/profile']" routerLinkActive="router-link-active" class="ion-align-self-center">
+            <ion-card class="borders">
+              <ion-icon class="menu-icon" name="settings"></ion-icon>
+              <h6>Mi Perfil</h6>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center">
+          <ion-col size="12" [routerLink]="['/evaluados']" routerLinkActive="router-link-active" class="ion-align-self-center">
+            <ion-card class="borders">
+              <ion-icon class="menu-icon" name="people"></ion-icon>
+              <h6>Mis Evaluados</h6>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center">
+          <ion-col size="12" [routerLink]="['/dashboard']" routerLinkActive="router-link-active" class="ion-align-self-center">
+            <ion-card class="borders">
+              <ion-icon class="menu-icon" name="calendar"></ion-icon>
+              <h6>Dashboard</h6>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+</ion-content>
