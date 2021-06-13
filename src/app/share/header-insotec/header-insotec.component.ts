@@ -17,7 +17,6 @@ export class HeaderInsotecComponent implements OnInit {
 
   ngOnInit() {
     this.auth.getUser().subscribe(user => {
-      console.log('app-header-insotec', this.fin);
       if (user) {
         this.login = true;
       }else {

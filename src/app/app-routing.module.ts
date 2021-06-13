@@ -58,6 +58,10 @@ const routes: Routes = [
   {
     path: 'evaluaciones-detalles/:id',
     loadChildren: () => import('./evaluaciones-detalles/evaluaciones-detalles.module').then( m => m.EvaluacionesDetallesPageModule)
+  },
+  {
+    path: 'modal-matriz-comportamiento',
+    loadChildren: () => import('./modal-matriz-comportamiento/modal-matriz-comportamiento.module').then( m => m.ModalMatrizComportamientoPageModule)
   }
 ];
 

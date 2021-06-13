@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Plugins } from '@capacitor/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { UserIterface } from './interfaces';
 
 const { Storage } = Plugins;
@@ -34,7 +33,7 @@ export class AuthService {
         const userData = JSON.parse(res.value);
         this.currentUser.next(userData);
         this.api.setHeader(userData['token']);
-
+        this.router.navigateByUrl('/inicio', { replaceUrl: true });
       } else {
         this.currentUser.next(false);
         this.api.setHeader('');

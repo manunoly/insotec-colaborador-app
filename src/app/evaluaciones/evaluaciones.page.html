@@ -53,13 +53,13 @@
             <ion-col size="3" class="ion-no-padding ion-no-margin ion-padding-start">
               <b>Fecha</b>
             </ion-col>
-            <ion-col size="2" *ngIf="matriz.length > 1" class="ion-no-padding ion-no-marginion-text-capitalize">
+            <ion-col size="2" *ngIf="matriz.length > 1" class="ion-no-padding ion-no-margin">
               <b>Matriz</b>
             </ion-col>
-            <ion-col class="ion-align-self-center ion-text-center ion-no-padding ion-no-marginion-text-capitalize">
+            <ion-col class="ion-align-self-center ion-text-center ion-no-padding ion-no-margin">
               <b>Evaluador</b>
             </ion-col>
-            <ion-col size="2" class="ion-align-self-end ion-text-end ion-no-padding ion-no-marginion-text-capitalize">
+            <ion-col size="2" class="ion-align-self-end ion-text-end ion-no-padding ion-no-margin">
               <b>Nota</b>
             </ion-col>
           </ion-row>
@@ -72,13 +72,13 @@
             <ion-col size="3" class="ion-no-padding ion-no-margin ion-padding-start">
              <small> {{evaluacion?.created_at | date: 'dd/MM/yy'}} </small>
             </ion-col>
-            <ion-col size="2" *ngIf="matriz.length > 1" class="ion-no-padding ion-no-marginion-text-capitalize">
+            <ion-col size="2" *ngIf="matriz.length > 1" class="ion-no-padding ion-no-margin ion-text-capitalize">
               {{evaluacion?.matriz?.nombre}}
             </ion-col>
-            <ion-col class="ion-align-self-center ion-text-center ion-no-padding ion-no-marginion-text-capitalize">
+            <ion-col class="ion-align-self-center ion-text-center ion-no-padding ion-no-margin ion-text-capitalize">
               {{evaluacion?.usuario_evaluador}}
             </ion-col>
-            <ion-col size="2" class="ion-align-self-end ion-text-end ion-no-padding ion-no-marginion-text-capitalize">
+            <ion-col size="2" class="ion-align-self-end ion-text-end ion-no-padding ion-no-margin">
               {{evaluacion?.nota_promedio}}
             </ion-col>
           </ion-row>

@@ -1,3 +1,4 @@
+import { SharedModule } from './../share/share.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +13,7 @@ import { EvaluarPage } from './evaluar.page';
   imports: [
     CommonModule,
     FormsModule,
+    SharedModule,
     IonicModule,
     EvaluarPageRoutingModule
   ],
