@@ -24,6 +24,7 @@ export class EvaluarPage implements OnInit {
       this.util.showMessage('No hemos identificado el trabajador a evaluar');
       return this._navigation.back();
     }
+    //console.log('this.colaborador',this.colaborador);
     this.getData(this.colaborador?.matriz_id);
   }
 
@@ -66,7 +67,6 @@ export class EvaluarPage implements OnInit {
   }
 
   async salvarEvaluacion(){
-    let index = 0;
     let postData = {
       'user_id': this.colaborador?.id,
       'matriz_id': this.colaborador?.matriz_id,
@@ -79,11 +79,13 @@ export class EvaluarPage implements OnInit {
     // }
     try {
       await this.util.showLoading();
-      console.log('postData', postData);
+      //console.log('postData', postData);
       const resp = await this.api.post('evaluaciones', postData);
       this.util.dismissLoading();
-      this.util.showMessage('Se ha guardado la evaluación');
-      this.router.navigateByUrl('/evaluaciones-ultimas');
+      if (resp && resp?.id){
+        this.util.showMessage('Por favor terminar evaluación, se ha guardado las calificaciones');
+        this.router.navigateByUrl('/evaluaciones-ultimas/' + resp.id + '/'+ this.colaborador?.id );
+      }
     } catch (error) {
       this.util.dismissLoading();
       this.util.handleError(error);
@@ -99,6 +101,5 @@ export class EvaluarPage implements OnInit {
         console.log('this.evaluacion',JSON.stringify(this.evaluacion));
       }
     }).catch();
-
   }
 }

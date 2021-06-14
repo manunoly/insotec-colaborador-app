@@ -8,36 +8,21 @@
         <ion-card-title>Mis Resultados</ion-card-title>
       </ion-card-header>
 
-      <ion-card-content>
+      <ion-card-content  class="ion-text-center">
         <ion-grid>
           <ion-row>
-            <ion-col size="5">
-              <h3 class="fullText"><b> Mejor evaluación:</b></h3>
-            </ion-col>
-            <ion-col size="3" size-lg>
-              2.2
-            </ion-col>
-            <ion-col size="4" size-lg>
-              564654654
+            <ion-col offset="1">
+              <h3 class="fullText"> Mejor evaluación: <b> {{resume?.mejor_evaluacion}} </b></h3>
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="5">
-              <h3 class="fullText"><b> Peor evaluación:</b></h3>
-            </ion-col>
-            <ion-col size="3" size-lg>
-
-            </ion-col>
-            <ion-col size="4" size-lg>
-
+            <ion-col offset="1">
+              <h3 class="fullText"> Peor evaluación: <b> {{resume?.mejor_evaluacion}} </b></h3>
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="5">
-              <h3 class="fullText"><b> Promedio</b></h3>
-            </ion-col>
-            <ion-col size="3" size-lg>
-
+            <ion-col offset="1">
+              <h3 class="fullText"> Promedio: <b> {{resume?.promedio_evaluacion}} </b></h3>
             </ion-col>
           </ion-row>
         </ion-grid>

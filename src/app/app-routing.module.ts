@@ -64,7 +64,11 @@ const routes: Routes = [
     loadChildren: () => import('./modal-matriz-comportamiento/modal-matriz-comportamiento.module').then( m => m.ModalMatrizComportamientoPageModule)
   },
   {
-    path: 'evaluaciones-ultimas',
+    path: 'evaluaciones-ultimas/:id',
+    loadChildren: () => import('./evaluaciones-ultimas/evaluaciones-ultimas.module').then( m => m.EvaluacionesUltimasPageModule)
+  },
+  {
+    path: 'evaluaciones-ultimas/:id/:user_id',
     loadChildren: () => import('./evaluaciones-ultimas/evaluaciones-ultimas.module').then( m => m.EvaluacionesUltimasPageModule)
   }
 ];

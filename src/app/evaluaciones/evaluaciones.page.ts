@@ -14,6 +14,7 @@ export class EvaluacionesPage implements OnInit {
   public dataOriginal: EvaluacionInterface[];
   matriz = [];
   tmpMatriz;
+  resume;
 
   constructor(private util: UtilService, private api: ApiService) { }
 
@@ -26,7 +27,6 @@ export class EvaluacionesPage implements OnInit {
         if(!this.matriz.includes(evaluacion?.matriz?.nombre)){
           this.matriz.push(evaluacion?.matriz?.nombre);
       }
-
       return evaluacion;
     })
   }
@@ -34,6 +34,7 @@ export class EvaluacionesPage implements OnInit {
   async getData(){
     try {
       await this.util.showLoading();
+      this.api.getData('evaluaciones/resumen/usuario').then(resp=>this.resume=resp).catch();
       const response = await this.api.getData('evaluaciones');
       this.dataOriginal = response as any;
       this.convertAndSortData();
