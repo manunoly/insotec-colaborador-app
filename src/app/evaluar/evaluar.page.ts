@@ -14,9 +14,8 @@ export class EvaluarPage implements OnInit {
   data;
   colaborador;
   today = Date.now();
-  evaluacion = {
+  evaluacion = {};
 
-  }
   constructor(private alertController: AlertController, private _navigation: Location, private api: ApiService, private router: Router, private util: UtilService) { }
 
   ngOnInit() {
@@ -40,27 +39,23 @@ export class EvaluarPage implements OnInit {
     }
   }
 
-  verComportamientoDetalle(id) {
-    this.util.modalComportamiento(id, this.data, false);
-  }
-
   async confirmaEvaluacion() {
     {
       const alert = await this.alertController.create({
-        header: 'Nuevo Usuario!',
-        message: `Te gustaria Registrarte`,
-        cssClass: 'fondoVerde alertDefault',
+        header: 'Guardar evaluación!',
+        message: `Esta a punto de registar una nueva evaluación`,
+        cssClass: 'alertDefault',
         buttons: [
           {
-            text: 'No',
+            text: 'Cancelar',
             role: 'cancel',
             handler: (data) => {
 
             }
           }, {
-            text: 'Enviar',
+            text: 'Guardar',
             handler: () => {
-              this.util.setTmpData('');
+              this.salvarEvaluacion();
             }
           }
         ]
@@ -68,5 +63,42 @@ export class EvaluarPage implements OnInit {
 
       await alert.present();
     }
+  }
+
+  async salvarEvaluacion(){
+    let index = 0;
+    let postData = {
+      'user_id': this.colaborador?.id,
+      'matriz_id': this.colaborador?.matriz_id,
+      'comportamientos': JSON.stringify(this.evaluacion)
+    }
+    // for (const [key, value] of Object.entries(this.evaluacion)) {
+    //   postData[`eval${index}_id`] = parseInt(key.toString().trim());
+    //   postData[`eval${index}`] = parseInt(value.toString().trim());
+    //   index = index + 1;
+    // }
+    try {
+      await this.util.showLoading();
+      console.log('postData', postData);
+      const resp = await this.api.post('evaluaciones', postData);
+      this.util.dismissLoading();
+      this.util.showMessage('Se ha guardado la evaluación');
+      this.router.navigateByUrl('/evaluaciones-ultimas');
+    } catch (error) {
+      this.util.dismissLoading();
+      this.util.handleError(error);
+    }
+  }
+
+  async verComportamientoDetalle(id){
+    //console.log(id,this.data);
+    const modal = await this.util.modalComportamiento(id, this.data);
+    modal.onWillDismiss().then(resp=> {
+      if(resp?.data && resp?.data.hasOwnProperty('comportamientoValue')){
+        this.evaluacion[`id${id}`] = resp?.data?.comportamientoValue;
+        console.log('this.evaluacion',JSON.stringify(this.evaluacion));
+      }
+    }).catch();
+
   }
 }

@@ -1,0 +1,35 @@
+<ion-content>
+  <ion-grid style="background-color: white; height: 100%; display: flex; flex-flow: column;">
+    <ion-row style="flex-grow: 1;" (click)="dismiss(0)">
+      <ion-col size="1" style="background-color: red;">
+      </ion-col>
+      <ion-col class="ion-align-self-center ion-text-justify">
+        {{comportamiento.eval0}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="flex-grow: 1;" (click)="dismiss(1)">
+      <ion-col size="1" style="background-color: yellow">
+      </ion-col>
+      <ion-col class="ion-align-self-center ion-text-justify">
+        {{comportamiento.eval1}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="flex-grow: 1;" (click)="dismiss(2)">
+      <ion-col size="1" style="background-color: greenyellow;">
+      </ion-col>
+      <ion-col class="ion-align-self-center ion-text-justify">
+        {{comportamiento.eval2}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="flex-grow: 1;" (click)="dismiss(3)">
+      <ion-col size="1" style="background-color: green;">
+      </ion-col>
+      <ion-col class="ion-align-self-center ion-text-justify">
+        {{comportamiento.eval3}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

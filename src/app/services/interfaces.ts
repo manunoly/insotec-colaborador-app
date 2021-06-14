@@ -64,6 +64,7 @@ export interface AgenciaIterface {
   updated_at: Date;
   sucursal: SucursalIterface;
 }
+
 export interface MatrizIterface {
   id: number;
   nombre: string;
@@ -71,6 +72,7 @@ export interface MatrizIterface {
   activo: number;
   created_at: Date;
   updated_at: Date;
+  comportamientos: ComportamientoInterface[];
 }
 export interface EvaluacionInterface {
   id: number;
@@ -84,4 +86,17 @@ export interface EvaluacionInterface {
   created_at: Date;
   updated_at: Date;
   matriz: MatrizIterface;
+}
+
+export interface ComportamientoInterface {
+  id: number;
+  matriz_id: number;
+  comportamiento: string;
+  eval0: string;
+  eval1: string;
+  eval2: string;
+  eval3: string;
+  activo: number;
+  created_at: Date;
+  updated_at: Date;
 }

@@ -24,23 +24,30 @@ export class ApiService {
     }
   }
 
-  setHeader(token: string){
+  setHeader(token: string) {
     this.currentAccessToken = token;
   }
 
-  async getData(url){
+  async getData(url) {
     return this.http.get(`${this.url}/${url}`, this.getHeader()).toPromise();
   }
 
-  async getUser(){
+  post(url: string, body: Object = {}): Promise<any> {
+    return this.http.post(
+      `${this.url}/${url}`,
+      body, this.getHeader()
+    ).toPromise();
+  }
+
+  async getUser() {
     try {
       return await this.http.get(`${this.url}/user`, this.getHeader());
     } catch (error) {
 
     }
   }
-   // Create new user
-   signUp(credentials: {username, password}): Promise<any> {
+  // Create new user
+  signUp(credentials: { username, password }): Promise<any> {
     return this.http.post(`${this.url}/users`, credentials).toPromise();
   }
 
