@@ -15,6 +15,7 @@ export class EvaluarPage implements OnInit {
   colaborador;
   today = Date.now();
   evaluacion = {};
+  cantidadEvaluacion = [];
 
   constructor(private alertController: AlertController, private _navigation: Location, private api: ApiService, private router: Router, private util: UtilService) { }
 
@@ -98,7 +99,10 @@ export class EvaluarPage implements OnInit {
     modal.onWillDismiss().then(resp=> {
       if(resp?.data && resp?.data.hasOwnProperty('comportamientoValue')){
         this.evaluacion[`id${id}`] = resp?.data?.comportamientoValue;
-        console.log('this.evaluacion',JSON.stringify(this.evaluacion));
+        if(!this.cantidadEvaluacion.includes(id)){
+          this.cantidadEvaluacion.push(id);
+        }
+        //console.log('this.evaluacion',JSON.stringify(this.evaluacion));
       }
     }).catch();
   }

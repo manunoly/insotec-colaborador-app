@@ -25,18 +25,18 @@ export class AuthService {
     this.loadUser();
   }
 
-  loadUser() {
+  private loadUser() {
     Storage.get({ key: TOKEN_KEY }).then(res => {
-      console.log('loadUser SET USER: ', JSON.parse(res.value));
+      //console.log('loadUser SET USER: ', JSON.parse(res.value));
 
       if (res.value) {
         const userData = JSON.parse(res.value);
         this.currentUser.next(userData);
         this.api.setHeader(userData['token']);
-        this.router.navigateByUrl('/inicio', { replaceUrl: true });
       } else {
         this.currentUser.next(false);
         this.api.setHeader('');
+        this.router.navigateByUrl('', { replaceUrl: true });
       }
     });
   }

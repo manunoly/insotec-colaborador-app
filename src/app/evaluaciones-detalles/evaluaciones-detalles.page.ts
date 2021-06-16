@@ -31,7 +31,7 @@ export class EvaluacionesDetallesPage implements OnInit {
     }
   }
 
-  verComportamientoDetalle(id, matriz){
-    this.util.modalComportamiento(id, matriz);
+  verComportamientoDetalle(id){
+    this.util.modalComportamiento(id, this.data?.matriz);
   }
 }

@@ -39,6 +39,14 @@ export class ApiService {
     ).toPromise();
   }
 
+
+  put(url: string, body: Object = {}): Promise<any> {
+    return this.http.put(
+      `${this.url}/${url}`,
+      body, this.getHeader()
+    ).toPromise();
+  }
+
   async getUser() {
     try {
       return await this.http.get(`${this.url}/user`, this.getHeader());
