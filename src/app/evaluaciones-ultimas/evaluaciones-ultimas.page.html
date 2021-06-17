@@ -17,10 +17,10 @@
           </ion-row>
           <ion-row>
             <ion-col size="6">
-              <h3 class="fullText ion-text-capitalize">Matriz:<b> {{data?.matriz?.nombre}} </b></h3>
+              <h3 class="fullText ion-text-capitalize">Matriz:<b> {{ data && data[0] ? data[0]?.matriz?.nombre : ''}} </b></h3>
             </ion-col>
-            <ion-col size="6" class="ion-text-end">
-              <h3 class="fullText">Fecha:<b> {{data?.created_at | date: 'dd/MM/yy'}} </b></h3>
+            <ion-col size="6" class="ion-text-end" *ngIf="data && data[0]" >
+              <h3 class="fullText">Fecha:<b> {{ data[0]?.created_at | date: 'dd/MM/yy'}} </b></h3>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -51,16 +51,34 @@
           <h6 class="ion-text-capitalize ion-padding-start ion-no-padding ion-no-margin"> {{item?.comportamiento}} </h6>
         </ion-col>
         <ion-col size="2" class="ion-text-center ion-no-padding ion-no-margin" style="background-color: gainsboro;">
-          <h5> <b> {{getEvaluacionValor(0, item.id)}} </b></h5>
+          <h5> <b> {{getEvaluacionValor(0, item?.id)}} </b></h5>
         </ion-col>
         <ion-col class="ion-text-center ion-no-padding ion-no-margin">
-          <h5> <b>  {{getEvaluacionValor(1, item.id)}} </b></h5>
+          <h5> <b>  {{getEvaluacionValor(1, item?.id)}} </b></h5>
         </ion-col>
         <ion-col class="ion-text-center ion-no-padding ion-no-margin">
-          <h5> <b>  {{getEvaluacionValor(2, item.id)}} </b></h5>
+          <h5> <b>  {{getEvaluacionValor(2, item?.id)}} </b></h5>
         </ion-col>
         <ion-col class="ion-text-center ion-no-padding ion-no-margin">
-          <h5> <b>  {{getEvaluacionValor(3, item.id)}} </b></h5>
+          <h5> <b>  {{getEvaluacionValor(3, item?.id)}} </b></h5>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6" class="ion-no-padding ion-no-margin ion-align-self-center">
+          <h6 class="ion-text-capitalize ion-padding-start ion-no-padding ion-no-margin">Nota Promedio </h6>
+        </ion-col>
+        <ion-col size="2" class="ion-text-center ion-no-padding ion-no-margin" style="background-color: gainsboro;">
+          <h5> <b> {{getEvaluacionValorPromedio(0)}} </b></h5>
+        </ion-col>
+        <ion-col class="ion-text-center ion-no-padding ion-no-margin">
+          <h5> <b>  {{getEvaluacionValorPromedio(1)}} </b></h5>
+        </ion-col>
+        <ion-col class="ion-text-center ion-no-padding ion-no-margin">
+          <h5> <b>  {{getEvaluacionValorPromedio(2)}} </b></h5>
+        </ion-col>
+        <ion-col class="ion-text-center ion-no-padding ion-no-margin">
+          <h5> <b>  {{getEvaluacionValorPromedio(3)}} </b></h5>
         </ion-col>
       </ion-row>
 

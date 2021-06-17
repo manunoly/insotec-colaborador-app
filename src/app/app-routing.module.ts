@@ -68,7 +68,7 @@ const routes: Routes = [
     loadChildren: () => import('./evaluaciones-ultimas/evaluaciones-ultimas.module').then( m => m.EvaluacionesUltimasPageModule)
   },
   {
-    path: 'evaluaciones-ultimas/:id/:user_id',
+    path: 'evaluaciones-ultimas/:id/usuario/:user_id',
     loadChildren: () => import('./evaluaciones-ultimas/evaluaciones-ultimas.module').then( m => m.EvaluacionesUltimasPageModule)
   }
 ];

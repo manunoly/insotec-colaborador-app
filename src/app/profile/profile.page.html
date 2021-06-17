@@ -1,38 +1,47 @@
 <app-header-insotec [inicio]=true [fin]=true></app-header-insotec>
 
 <ion-content>
-  <ion-grid>
-    <ion-row class="ion-align-items-center">
-        <ion-col size="12" class="ion-align-self-center ion-text-center">
-          <ion-avatar style="display:block; margin:auto; height: 100px; width: 100px;">
-            <img [src]="'assets/icon/favicon.png'">
-            <!-- <img [src]="userData ? userData.profile_photo_url: 'assets/icon/favicon.png'"> -->
-          </ion-avatar>
-          <div class="ion-text-capitalize">
-            <h3>{{userData?.name}}</h3>
-          </div>
-          <h5>{{userData?.email}}</h5>
-          <div class="ion-text-capitalize">
-            <h5>Agencia: {{userData?.agencia?.nombre}}</h5>
-            <h5>Sucursal: {{userData?.agencia?.sucursal?.nombre}}</h5>
-          </div>
-          <div class="ion-text-capitalize">
-            <h5>Cargo: {{userData?.cargo?.nombre}}</h5>
-          </div>
-          <div *ngIf="userData?.evaluador" class="ion-text-capitalize">
-            <h5>Evaluador: {{userData?.evaluador?.name}}</h5>
-          </div>
-          <h5>Roles</h5>
-          <div *ngIf="userData?.roles" >
-            <span *ngFor="let item of userData.roles">
-              <ion-chip>
-                <ion-label color="secondary">{{item.name}}</ion-label>
-              </ion-chip>
-            </span>
-          </div>
-          <ion-button (click)="logout()" shape="round" fill="outline">Cerrar Sessión</ion-button>
-      </ion-col>
-    </ion-row>
+  <ion-card  class="ion-text-center">
+    <ion-card-header>
+      <ion-card-title>Perfil de usuario</ion-card-title>
+    </ion-card-header>
 
-  </ion-grid>
+    <ion-card-content>
+      <ion-grid class="roundGrid">
+        <ion-row class="ion-align-items-center">
+            <ion-col size="12" class="ion-align-self-center ion-text-center">
+              <!-- <ion-avatar style="display:block; margin:auto; height: 100px; width: 100px;"> -->
+                <!-- <img [src]="'assets/icon/favicon.png'"> -->
+                <!-- <img [src]="userData ? userData.profile_photo_url: 'assets/icon/favicon.png'"> -->
+              <!-- </ion-avatar> -->
+              <div class="ion-text-capitalize ion-padding">
+                <h1>{{userData?.name}}</h1>
+              </div>
+              <h5>{{userData?.email}}</h5>
+              <div class="ion-text-capitalize ion-padding">
+                <h5>Agencia: {{userData?.agencia?.nombre}}</h5>
+                <h5>Sucursal: {{userData?.agencia?.sucursal?.nombre}}</h5>
+              </div>
+              <div class="ion-text-capitalize ion-padding">
+                <h5>Cargo: {{userData?.cargo?.nombre}}</h5>
+              </div>
+              <div *ngIf="userData?.evaluador" class="ion-text-capitalize ion-padding">
+                <h5>Evaluador: {{userData?.evaluador?.name}}</h5>
+              </div>
+              <h5>Roles</h5>
+              <div *ngIf="userData?.roles" class="ion-text-capitalize ion-padding">
+                <span *ngFor="let item of userData.roles">
+                  <ion-chip>
+                    <ion-label color="secondary">{{item.name}}</ion-label>
+                  </ion-chip>
+                </span>
+              </div>
+              <br class="ion-padding">
+              <ion-button (click)="logout()" shape="round" fill="outline">Cerrar Sessión</ion-button>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

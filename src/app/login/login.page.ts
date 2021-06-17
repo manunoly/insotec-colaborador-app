@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
     try {
       await loading.present();
       const user = await this.auth.login(this.loginForm.value);
-      await loading.dismiss();
+      loading.dismiss();
       this.router.navigateByUrl('/inicio', { replaceUrl: true });
 
     } catch (error) {

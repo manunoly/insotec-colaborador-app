@@ -11,18 +11,33 @@
       <ion-card-content  class="ion-text-center">
         <ion-grid>
           <ion-row>
-            <ion-col offset="1">
-              <h3 class="fullText"> Mejor evaluación: <b> {{resume?.mejor_evaluacion}} </b></h3>
+            <ion-col size="4" offset="2">
+              <h3 class="fullText"> Mejor evaluación:</h3>
+            </ion-col>
+            <ion-col size="3">
+              <h3><b> {{resume?.mejor_evaluacion}} </b></h3>
+            </ion-col>
+            <ion-col size="3">
+              <h3>  {{resume?.created_at | date: 'dd/MM/yy'}} </h3>
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col offset="1">
-              <h3 class="fullText"> Peor evaluación: <b> {{resume?.mejor_evaluacion}} </b></h3>
+            <ion-col size="4" offset="2">
+              <h3 class="fullText"> Peor evaluación:</h3>
+            </ion-col>
+            <ion-col size="3">
+              <h3><b> {{resume?.peor_evaluacion}} </b></h3>
+            </ion-col>
+            <ion-col size="3">
+              <h3>  {{resume?.created_at | date: 'dd/MM/yy'}} </h3>
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col offset="1">
-              <h3 class="fullText"> Promedio: <b> {{resume?.promedio_evaluacion}} </b></h3>
+            <ion-col size="4" offset="2">
+              <h3 class="fullText"> Promedio:</h3>
+            </ion-col>
+            <ion-col size="3">
+              <h3><b> {{resume?.promedio_evaluacion}} </b></h3>
             </ion-col>
           </ion-row>
         </ion-grid>

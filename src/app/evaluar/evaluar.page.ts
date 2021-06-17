@@ -45,7 +45,7 @@ export class EvaluarPage implements OnInit {
     {
       const alert = await this.alertController.create({
         header: 'Guardar evaluación!',
-        message: `Esta a punto de registar una nueva evaluación`,
+        message: `Seguro de registrar una nueva evaluación`,
         cssClass: 'alertDefault',
         buttons: [
           {
@@ -85,7 +85,7 @@ export class EvaluarPage implements OnInit {
       this.util.dismissLoading();
       if (resp && resp?.id){
         this.util.showMessage('Por favor terminar evaluación, se ha guardado las calificaciones');
-        this.router.navigateByUrl('/evaluaciones-ultimas/' + resp.id + '/'+ this.colaborador?.id );
+        this.router.navigateByUrl('/evaluaciones-ultimas/' + resp.id + '/usuario/'+ this.colaborador?.id );
       }
     } catch (error) {
       this.util.dismissLoading();

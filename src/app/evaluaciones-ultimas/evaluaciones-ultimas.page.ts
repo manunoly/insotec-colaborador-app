@@ -27,21 +27,25 @@ export class EvaluacionesUltimasPage implements OnInit {
       this.util.showMessage('No hemos identificado el trabajador');
       return this._navigation.back();
     }
-    this.colaborador = this.util.getTmpData();
-    if(!this.colaborador){
-      const user = this.auth.getUser().subscribe(user=>{
-        this.colaborador = user;
-        this.userId = user['id'];
-        if(!this.userId){
-          this.util.showMessage('No hemos identificado el trabajador');
-          return this._navigation.back();
-        }
-      })
-      setTimeout(() => {
-        user.unsubscribe();
-      }, 1000);
 
-    }
+    // if(!this.userId){
+    //   const user = this.auth.getUser().subscribe(user=>{
+    //     this.colaborador = user;
+    //     this.userId = user['id'];
+    //     if(!this.userId){
+    //       this.util.showMessage('No hemos identificado el trabajador');
+    //       return this._navigation.back();
+    //     }
+    //   })
+    //   setTimeout(() => {
+    //     user.unsubscribe();
+    //   }, 1000);
+
+    // }else{
+    //   this.api.getData('users/' + this.userId).then(user=>{
+    //     this.colaborador = user;
+    //   }).catch()
+    // }
 
     this.getData();
   }
@@ -49,10 +53,14 @@ export class EvaluacionesUltimasPage implements OnInit {
   async getData() {
     try {
       await this.util.showLoading();
-      const response = await this.api.getData(`evaluaciones/${this.id}/ultimas/${this.userId}`);
+      const response = await this.api.getData(`evaluaciones/${this.id}/ultimas/${this.userId ? this.userId : ''}`);
       this.data = response as any;
-      this.comportamientos = this.data[0]['comportamientos'] ? this.data[0]['comportamientos'].map(x=>x.comportamiento) : [];
-      console.log('this.comportamientos', this.comportamientos);
+      if(this.data && this.data.length){
+        this.comportamientos = this.data[0]['comportamientos'] ? this.data[0]['comportamientos'].map(x=>x.comportamiento) : [];
+        //console.log('this.comportamientos', this.comportamientos);
+        this.colaborador = this.data[0]['user'];
+      }
+
       this.util.dismissLoading();
     } catch (error) {
       this.util.dismissLoading();
@@ -61,12 +69,12 @@ export class EvaluacionesUltimasPage implements OnInit {
   }
 
   async verComportamientoDetalle(id){
-    //console.log(id,this.data);
+    //console.log(id,this.data[0]?.matriz);
     const modal = await this.util.modalComportamiento(id, this.data[0]?.matriz);
   }
 
   getEvaluacionValor(columna, comportamientoId){
-    if(this.data[columna]){
+    if(this.data && this.data[columna]){
       const evaluacion = this.data[columna]?.comportamientos.find(x => x?.comportamiento?.id == comportamientoId);
       if(evaluacion && evaluacion.valor_evaluacion){
         return evaluacion.valor_evaluacion;
@@ -74,6 +82,17 @@ export class EvaluacionesUltimasPage implements OnInit {
     }
     return '-';
   }
+
+  getEvaluacionValorPromedio(columna){
+    if(this.data && this.data[columna]){
+      const evaluacion = this.data[columna];
+      if(evaluacion && evaluacion.nota_promedio){
+        return evaluacion.nota_promedio;
+      }
+    }
+    return '-';
+  }
+
 
   async guardar(){
     try {

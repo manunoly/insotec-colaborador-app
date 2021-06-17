@@ -8,14 +8,14 @@
       <ion-item class="ion-no-padding ion-no-margin">
         <ion-grid class="ion-no-padding ion-no-margin">
           <ion-row class="ion-no-padding ion-no-margin">
-            <ion-col class="ion-align-self-center ion-text-start ion-padding-start ion-no-padding ion-no-marginion-text-capitalize">
+            <ion-col class="ion-align-self-center ion-text-start ion-padding-start ion-no-padding ion-no-margin ion-text-capitalize">
               <b>Colaborador</b>
             </ion-col>
-            <ion-col size="3" class="ion-no-padding ion-no-margin ion-text-capitalize fullText">
-              <p>Evaluaciones</p>
+            <ion-col size="2" class="ion-text-center ion-no-padding ion-no-margin ion-text-capitalize fullText">
+              <b>Eval.</b>
             </ion-col>
-            <ion-col size="3" class="ion-padding-start ion-text-end ion-no-padding ion-no-margin fullText">
-              <p>Promedio</p>
+            <ion-col size="2" class="ion-text-center ion-text-end ion-no-padding ion-no-margin fullText">
+              <b>Prom.</b>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -27,10 +27,10 @@
             <ion-col class="ion-align-self-center ion-text-start ion-padding-start ion-no-padding ion-no-margin ion-text-capitalize">
               {{evaluacion?.name}}
             </ion-col>
-            <ion-col size="3" class="ion-no-padding ion-no-margin ion-text-center">
+            <ion-col size="2" class="ion-no-padding ion-no-margin ion-text-center">
               {{evaluacion?.cantidad_evaluacion}}
             </ion-col>
-            <ion-col size="3" class="ion-padding-end ion-text-end ion-no-padding ion-no-margin">
+            <ion-col size="2" class="ion-padding-end ion-text-end ion-no-padding ion-no-margin">
               {{evaluacion?.promedio_evaluacion}}
             </ion-col>
           </ion-row>
@@ -41,6 +41,6 @@
 
   </div>
   <div *ngIf="data && data.length == 0">
-    <h5 class="ion-padding">Usted No tiene evaluaciones</h5>
+    <h5 class="ion-padding">Usted No tiene trabajadores a evaluar</h5>
   </div>
 </ion-content>
