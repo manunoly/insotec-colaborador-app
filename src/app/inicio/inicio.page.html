@@ -18,7 +18,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="ion-align-items-center">
+        <ion-row class="ion-align-items-center" *ngIf="tienePermiso('evaluador')">
           <ion-col size="12" [routerLink]="['/evaluados']" routerLinkActive="router-link-active" class="ion-align-self-center">
             <ion-card class="borders">
               <ion-icon class="menu-icon" name="people"></ion-icon>
@@ -27,10 +27,10 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="ion-align-items-center">
-          <ion-col size="12" [routerLink]="['/evaluaciones-ultimas/13/usuario/1']" routerLinkActive="router-link-active" class="ion-align-self-center">
+        <ion-row class="ion-align-items-center" *ngIf="tienePermiso('admin') || tienePermiso('gerencia') || tienePermiso('gerenteagencia') || tienePermiso('gerentesucursal')" >
+          <ion-col size="12" [routerLink]="['/dashboard']" routerLinkActive="router-link-active" class="ion-align-self-center">
             <ion-card class="borders">
-              <ion-icon class="menu-icon" name="calendar"></ion-icon>
+              <ion-icon class="menu-icon" name="grid"></ion-icon>
               <h6>Dashboard</h6>
             </ion-card>
           </ion-col>
