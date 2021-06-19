@@ -31,7 +31,7 @@ export class AuthService {
 
       if (res.value) {
         const userData = JSON.parse(res.value);
-        this.currentUser.next(userData);
+        this.currentUser.next(userData['user']);
         this.api.setHeader(userData['token']);
       } else {
         this.currentUser.next(false);
@@ -61,15 +61,15 @@ export class AuthService {
   }
 
   async logout() {
-    await Storage.remove({ key: TOKEN_KEY });
+    this.http.post(`${this.url}/logout`, {}, this.api.getHeader()).toPromise().then().catch()
     this.currentUser.next(false);
     this.api.setHeader('');
-    this.http.post(`${this.url}/logout`, {}, this.api.getHeader()).toPromise().then().catch()
+    Storage.remove({ key: TOKEN_KEY });
     this.router.navigateByUrl('/', { replaceUrl: true });
   }
 
-  hasRole(role: string): boolean {
-      if (!this.currentUser.value || !this.currentUser.value.roles.includes(role as any)) {
+  tienePermiso(permision: string): boolean {
+      if (!this.currentUser.value || !this.currentUser.value?.permisos?.includes(permision as any)) {
         return false;
       }
     return true;

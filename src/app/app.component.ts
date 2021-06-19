@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
@@ -6,16 +7,29 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  public appPages = [
-    { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
-    { title: 'Usuario', url: '/profile', icon: 'person' },
-    { title: 'Evaluados', url: '/evaluados', icon: 'people' },
-  ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+  public appPages = [];
+  constructor(private auth: AuthService) {
+    this.auth.getUser().subscribe(user=>{
+      if(!user){
+        return this.appPages = [];
+      }else{
+        this.appPages = [
+          { title: 'Mis Evaluaciones', url: '/evaluaciones', icon: 'people' },
+          { title: 'Usuario', url: '/profile', icon: 'settings' },
+        ];
+
+        if(this.auth.tienePermiso('evaluador')){
+          this.appPages.push(
+            { title: 'Mis Evaluados', url: '/evaluados', icon: 'people' }
+          );
+        }
+
+        if(this.auth.tienePermiso('admin') || this.auth.tienePermiso('gerencia') || this.auth.tienePermiso('gerenteagencia') || this.auth.tienePermiso('gerentesucursal')){
+          this.appPages.push(
+            { title: 'Dashboard', url: '/dashboard', icon: 'grid' }
+          );
+        }
+      }
+    })
+  }
 }

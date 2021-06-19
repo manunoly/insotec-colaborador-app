@@ -10,6 +10,7 @@ export interface UserIterface {
   evaluador_id: number;
   agencia_id: number;
   cargo_id: number;
+  permisos?:[string];
   profile_photo_url: string;
   roles: RoleIterface[];
   evaluador: UserIterface;
@@ -21,6 +22,7 @@ export interface UserIterface {
   export interface RoleIterface {
       id: number;
       name: string;
+      descripcion: string;
   }
 
  export interface CargoIterface {

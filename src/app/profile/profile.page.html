@@ -32,7 +32,7 @@
               <div *ngIf="userData?.roles" class="ion-text-capitalize ion-padding">
                 <span *ngFor="let item of userData.roles">
                   <ion-chip>
-                    <ion-label color="secondary">{{item.name}}</ion-label>
+                    <ion-label color="secondary">{{item?.descripcion}}</ion-label>
                   </ion-chip>
                 </span>
               </div>
