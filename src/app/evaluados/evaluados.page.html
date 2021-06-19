@@ -8,13 +8,31 @@
       <ion-item class="ion-no-padding ion-no-margin">
         <ion-grid class="ion-no-padding ion-no-margin">
           <ion-row class="ion-no-padding ion-no-margin">
-            <ion-col class="ion-align-self-center ion-text-start ion-padding-start ion-no-padding ion-no-margin ion-text-capitalize">
+            <ion-col class="ion-align-self-center ion-text-start ion-padding-start ion-no-padding ion-no-margin ion-text-capitalize"  (click)="convertAndSortData('name', !sortAsc)">
+              <div *ngIf="order=='name' && sortAsc" style="float: left;">
+                <ion-icon name="caret-down-outline"></ion-icon>
+              </div>
+              <div *ngIf="order=='name' && !sortAsc" style="float: left;">
+                <ion-icon name="caret-up-outline"></ion-icon>
+              </div>
               <b>Colaborador</b>
             </ion-col>
-            <ion-col size="2" class="ion-text-center ion-no-padding ion-no-margin ion-text-capitalize fullText">
+            <ion-col size="2" class="ion-text-center ion-no-padding ion-no-margin ion-text-capitalize fullText" (click)="convertAndSortData('cantidad_evaluacion', !sortAsc)">
+              <div *ngIf="order=='cantidad_evaluacion' && sortAsc" style="float: left;">
+                <ion-icon name="caret-down-outline"></ion-icon>
+              </div>
+              <div *ngIf="order=='cantidad_evaluacion' && !sortAsc" style="float: left;">
+                <ion-icon name="caret-up-outline"></ion-icon>
+              </div>
               <b>Eval.</b>
             </ion-col>
-            <ion-col size="2" class="ion-text-center ion-text-end ion-no-padding ion-no-margin fullText">
+            <ion-col size="2" class="ion-text-center ion-text-end ion-no-padding ion-no-margin fullText" (click)="convertAndSortData('promedio_evaluacion', !sortAsc)">
+              <div *ngIf="order=='promedio_evaluacion' && sortAsc" style="float: left;">
+                <ion-icon name="caret-down-outline"></ion-icon>
+              </div>
+              <div *ngIf="order=='promedio_evaluacion' && !sortAsc" style="float: left;">
+                <ion-icon name="caret-up-outline"></ion-icon>
+              </div>
               <b>Prom.</b>
             </ion-col>
           </ion-row>

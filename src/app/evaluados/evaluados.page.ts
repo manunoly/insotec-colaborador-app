@@ -14,6 +14,8 @@ export class EvaluadosPage implements OnInit {
   public dataOriginal;
   matriz = [];
   tmpMatriz;
+  order = 'name';
+  sortAsc = true;
 
   constructor(private util: UtilService, private api: ApiService, private router: Router) { }
 
@@ -21,7 +23,9 @@ export class EvaluadosPage implements OnInit {
     this.getData();
   }
 
-  convertAndSortData(){
+  convertAndSortData(field, sortAsc){
+    this.sortAsc = sortAsc;
+    this.order = field;
     this.data = this.dataOriginal.map(evaluacion => {
         if(!this.matriz.includes(evaluacion?.matriz?.nombre)){
           this.matriz.push(evaluacion?.matriz?.nombre);
@@ -29,6 +33,7 @@ export class EvaluadosPage implements OnInit {
 
       return evaluacion;
     })
+    this.data.sort((a,b)=> sortAsc ? (a[field] > b[field] ? 1 : -1) : (a[field] < b[field] ? 1 : -1))
   }
 
   async getData(){
@@ -36,7 +41,7 @@ export class EvaluadosPage implements OnInit {
       await this.util.showLoading();
       const response = await this.api.getData('evaluados');
       this.dataOriginal = response as any;
-      this.convertAndSortData();
+      this.convertAndSortData('name', true);
       this.util.dismissLoading();
     } catch (error) {
       this.util.dismissLoading();
