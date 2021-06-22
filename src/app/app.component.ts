@@ -14,13 +14,13 @@ export class AppComponent {
         return this.appPages = [];
       }else{
         this.appPages = [
-          { title: 'Mis Evaluaciones', url: '/evaluaciones', icon: 'people' },
-          { title: 'Usuario', url: '/profile', icon: 'settings' },
+          { title: 'Mis evaluaciones', url: '/evaluaciones', icon: 'people' },
+          { title: 'Mi perfil', url: '/profile', icon: 'settings' },
         ];
 
         if(this.auth.tienePermiso('evaluador')){
           this.appPages.push(
-            { title: 'Mis Evaluados', url: '/evaluados', icon: 'people' }
+            { title: 'Mis evaluados', url: '/evaluados', icon: 'people' }
           );
         }
 
