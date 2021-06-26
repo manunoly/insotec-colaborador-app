@@ -2,4 +2,110 @@
 
 <ion-content>
 
+
+  <ion-card>
+    <ion-card-header class="ion-text-center">
+      <ion-card-title>Dashboard</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content class="ion-text-start">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3" class="ion-no-padding ion-no-margin">
+            <h3 class="fullText"> Sucursal</h3>
+          </ion-col>
+          <ion-col size="3" class="ion-no-padding ion-no-margin">
+            <ion-select [(ngModel)]="sucursal" [interfaceOptions]="customPopoverOptions" interface="popover" mode="ios" class="ion-no-padding ion-no-margin ion-text-end" (ionChange)="filter()">
+              <ion-select-option value="">Todas</ion-select-option>
+              <ion-select-option *ngFor="let item of sucursales"  value="{{item?.id}}"> {{item?.nombre}} </ion-select-option>
+            </ion-select>
+          </ion-col>
+
+          <ion-col size="3" class="ion-no-padding ion-no-margin ion-text-end">
+            <h3 class="fullText"> Matriz</h3>
+          </ion-col>
+          <ion-col size="3" class="ion-no-padding ion-no-margin ion-text-end">
+            <ion-select [(ngModel)]="matriz" [interfaceOptions]="customPopoverOptions" interface="popover" mode="ios" class="ion-no-padding ion-no-margin ion-text-end" (ionChange)="filter()">
+              <ion-select-option value="">Todas</ion-select-option>
+              <ion-select-option *ngFor="let item of matrices"  value="{{item?.id}}"> {{item?.nombre}} </ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-padding-top">
+          <ion-col size="3" class="ion-no-padding ion-no-margin">
+            <h3 class="fullText"> Agencia </h3>
+          </ion-col>
+          <ion-col size="3" class="ion-no-padding ion-no-margin">
+            <ion-select [(ngModel)]="agencia" [interfaceOptions]="customPopoverOptions" interface="popover" mode="ios" class="ion-no-padding ion-no-margin ion-text-end" (ionChange)="filter()">
+              <ion-select-option value="">Todas</ion-select-option>
+              <ion-select-option *ngFor="let item of agencias"  value="{{item?.id}}"> {{item?.nombre}} </ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="5" class="ion-no-padding ion-no-margin">
+            <ion-item lines="none" class="ion-no-padding ion-no-margin">
+                <ion-label position="floating" color="primary">
+                  <span class="ion-text-capitalize"> Fecha inicio </span>
+              </ion-label>
+              <ion-datetime displayFormat="D MMM YY" value="2019-10-01T15:43:40.394Z" display-timezone="utc" class="ion-no-padding ion-no-margin"></ion-datetime>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="4" offset="3" class="ion-no-padding ion-no-margin">
+            <ion-item lines="none" class="ion-no-padding ion-no-margin" style="float: right;">
+                <ion-label position="floating" color="primary">
+                  <span class="ion-text-capitalize ion-text-end"> Fecha fin </span>
+              </ion-label>
+              <ion-datetime displayFormat="D MMM YY" value="2019-10-01T15:43:40.394Z" display-timezone="utc" class="ion-no-padding ion-no-margin"></ion-datetime>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-list>
+    <ion-item class="ion-no-padding ion-no-margin">
+      <ion-grid class="ion-no-padding ion-no-margin">
+        <ion-row class="ion-no-padding ion-no-margin">
+          <ion-col class="ion-align-self-center ion-text-start ion-padding-start ion-no-padding ion-no-margin ion-text-capitalize">
+            <div *ngIf="order=='comportamiento' && sortAsc" style="float: left;">
+              <ion-icon name="caret-down-outline"></ion-icon>
+            </div>
+            <div *ngIf="order=='comportamiento' && !sortAsc" style="float: left;">
+              <ion-icon name="caret-up-outline"></ion-icon>
+            </div>
+            <b>Comportamiento</b>
+          </ion-col>
+          <ion-col size="2" class="ion-text-center ion-text-end ion-no-padding ion-no-margin fullText">
+            <div *ngIf="order=='promedio_evaluacion' && sortAsc" style="float: left;">
+              <ion-icon name="caret-down-outline"></ion-icon>
+            </div>
+            <div *ngIf="order=='promedio_evaluacion' && !sortAsc" style="float: left;">
+              <ion-icon name="caret-up-outline"></ion-icon>
+            </div>
+            <b>Prom.</b>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item *ngFor="let evaluacion of data" class="ion-no-padding ion-no-margin">
+      <ion-grid class="ion-no-padding ion-no-margin">
+        <ion-row class="ion-no-padding ion-no-margin">
+          <ion-col class="ion-align-self-center ion-text-start ion-padding-start ion-no-padding ion-no-margin ion-text-capitalize">
+            {{evaluacion?.comportamiento}}
+          </ion-col>
+          <ion-col size="2" class="ion-padding-end ion-text-end ion-no-padding ion-no-margin">
+            {{evaluacion?.valor_evaluacion}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
