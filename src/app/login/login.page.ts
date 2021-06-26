@@ -22,6 +22,14 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    const userS = this.auth.getUser().subscribe(user=>{
+      if(user){
+        this.router.navigateByUrl('inicio');
+      }
+    });
+    setTimeout(() => {
+      userS.unsubscribe();
+    }, 3000);
     this.loginForm = this.fb.group({
       email: ['manunoly@gmail.com', [Validators.required, Validators.email]],
       password: ['123456789', [Validators.required,Validators.min(8)]],
