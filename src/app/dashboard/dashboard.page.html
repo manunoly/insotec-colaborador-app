@@ -1,15 +1,18 @@
 <app-header-insotec [inicio]=true [fin]=true></app-header-insotec>
 
 <ion-content>
-
-
   <ion-card>
     <ion-card-header class="ion-text-center">
-      <ion-card-title>Dashboard</ion-card-title>
+      <ion-card-title> Dashboard
+      </ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-grid class="ion-no-padding ion-no-margin">
+      <ion-button size="small" slot="icon-only" fill="clear" style="float: right; margin-top: -45px;">
+        <ion-icon *ngIf="show"  name="caret-down-outline"></ion-icon>
+        <ion-icon *ngIf="!show" name="caret-back-outline"></ion-icon>
+      </ion-button>
+      <ion-grid class="ion-no-padding ion-no-margin clearfix" [hidden]="!show">
         <ion-row class="ion-no-padding ion-no-margin">
           <ion-col size="5" class="ion-no-padding ion-no-margin">
             <ion-item lines="none" class="ion-no-padding ion-no-margin">
@@ -56,7 +59,7 @@
                 <ion-label position="floating" color="primary">
                   Fecha inicio
               </ion-label>
-              <ion-datetime displayFormat="D MMM YY" value="2019-10-01T15:43:40.394Z" display-timezone="utc" class="ion-no-padding ion-no-margin"></ion-datetime>
+              <ion-datetime [(ngModel)]="from" (ionChange)="filter()"  displayFormat="D MMM YY" display-timezone="utc" class="ion-no-padding ion-no-margin"></ion-datetime>
             </ion-item>
           </ion-col>
 
@@ -65,7 +68,7 @@
                 <ion-label position="floating" color="primary">
                  Fecha fin
               </ion-label>
-              <ion-datetime displayFormat="D MMM YY" value="2019-10-01T15:43:40.394Z" display-timezone="utc" class="ion-no-padding ion-no-margin"></ion-datetime>
+              <ion-datetime [(ngModel)]="end" (ionChange)="filter()" displayFormat="D MMM YY" display-timezone="utc" class="ion-no-padding ion-no-margin"></ion-datetime>
             </ion-item>
           </ion-col>
 

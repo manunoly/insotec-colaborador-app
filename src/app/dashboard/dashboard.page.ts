@@ -17,14 +17,15 @@ export class DashboardPage implements OnInit {
     translucent: true
     //message: 'Only select your dominant hair color'
   };
+  show = true;
 
   filterUrl = "";
   matriz;
   sucursal;
   agencia;
-  f_inicio;
-  f_fin;
-
+  from;
+  end = new Date().toISOString();
+  cons
   matrices = [];
   sucursales = [];
   agencias = [];
@@ -32,27 +33,43 @@ export class DashboardPage implements OnInit {
   constructor(private util: UtilService, private api: ApiService) { }
 
   ngOnInit() {
-    this.getData();
+    let end = new Date();
+    end.setMonth(end.getMonth() - 1);
+    this.from = end.toISOString();
+    this.api.getData('matrices').then(data => this.matrices = data as any);
+    this.api.getData('sucursales').then(data => this.sucursales = data as any);
+    this.api.getData('agencias').then(data => this.agencias = data as any);
+
+    //this.getData();
   }
 
-  async getData(){
+  async getData() {
     try {
       await this.util.showLoading();
+      this.filterUrl = "?"
+      if (this.matriz) {
+        this.filterUrl = this.filterUrl + 'matriz=' + this.matriz + "&"
+      }
+      if (this.sucursal) {
+        this.filterUrl = this.filterUrl + 'sucursal=' + this.sucursal + "&"
+      }
+      if (this.from) {
+        this.filterUrl = this.filterUrl + 'from=' + this.from.toString().slice(0, 10) + "&"
+      }
+      if (this.end) {
+        this.filterUrl = this.filterUrl + 'end=' + this.end.toString().slice(0, 10);
+      }
       const response = await this.api.getData('evaluacionesfilter' + this.filterUrl);
       this.data = response as any;
 
-      this.api.getData('matrices').then(data => this.matrices = data as any);
-      this.api.getData('sucursales').then(data => this.sucursales = data as any);
-      this.api.getData('agencias').then(data => this.agencias = data as any);
-
-      this.util.dismissLoading();
+      await this.util.dismissLoading();
     } catch (error) {
       this.util.dismissLoading();
       this.util.handleError(error);
     }
   }
 
-  async filter(){
-    console.log('set filter', this.matriz);
+  async filter() {
+    this.getData();
   }
 }
