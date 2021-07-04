@@ -3,11 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Plugins } from '@capacitor/core';
+import { Storage } from '@ionic/storage';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { UserIterface } from './interfaces';
-
-const { Storage } = Plugins;
 
 const TOKEN_KEY = 'user-token';
 
@@ -21,16 +19,20 @@ export class AuthService {
   url = environment.api;
   user:UserIterface;
 
-  constructor(private router: Router, private api: ApiService, private http: HttpClient) {
+  constructor(private storage: Storage, private router: Router, private api: ApiService, private http: HttpClient) {
+    this.init();
+  }
+
+  async init(){
+    await this.storage.create();
     this.loadUser();
   }
 
   private loadUser() {
-    Storage.get({ key: TOKEN_KEY }).then(res => {
-      //console.log('loadUser SET USER: ', JSON.parse(res.value));
-
-      if (res.value) {
-        const userData = JSON.parse(res.value);
+    this.storage.get('TOKEN_KEY').then(res => {
+      const userData = res ?JSON.parse(res) : '';
+      console.log('loadUser SET USER: ', userData);
+      if (userData) {
         this.currentUser.next(userData['user']);
         this.api.setHeader(userData['token']);
       } else {
@@ -44,7 +46,7 @@ export class AuthService {
   login(data):Promise<any> {
     return new Promise(async (resolve, reject) => {
         this.http.post(`${this.url}/login`, data).toPromise().then(userData =>{
-          Storage.set({ key: TOKEN_KEY, value: JSON.stringify(userData) });
+          this.storage.set('TOKEN_KEY', JSON.stringify(userData));
           this.currentUser.next(userData['user']);
           this.api.setHeader(userData['token']);
           resolve(userData['user']);
@@ -64,7 +66,7 @@ export class AuthService {
     this.http.post(`${this.url}/logout`, {}, this.api.getHeader()).toPromise().then().catch()
     this.currentUser.next(false);
     this.api.setHeader('');
-    Storage.remove({ key: TOKEN_KEY });
+    this.storage.remove('TOKEN_KEY');
     this.router.navigateByUrl('/', { replaceUrl: true });
   }
 

@@ -1,5 +1,7 @@
 {
   "name": "insotec-colaborador-app",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
