@@ -17,7 +17,7 @@ export class DashboardPage implements OnInit {
     translucent: true
     //message: 'Only select your dominant hair color'
   };
-  show = true;
+  show = false;
 
   filterUrl = "";
   matriz;
@@ -40,7 +40,7 @@ export class DashboardPage implements OnInit {
     this.api.getData('sucursales').then(data => this.sucursales = data as any);
     this.api.getData('agencias').then(data => this.agencias = data as any);
 
-    //this.getData();
+    this.getData();
   }
 
   async getData() {
@@ -63,6 +63,7 @@ export class DashboardPage implements OnInit {
       this.data = response as any;
 
       await this.util.dismissLoading();
+      this.show = true;
     } catch (error) {
       this.util.dismissLoading();
       this.util.handleError(error);
@@ -70,6 +71,8 @@ export class DashboardPage implements OnInit {
   }
 
   async filter() {
-    this.getData();
+    if(this.show){
+      this.getData();
+    }
   }
 }

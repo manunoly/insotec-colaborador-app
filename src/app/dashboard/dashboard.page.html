@@ -3,15 +3,21 @@
 <ion-content>
   <ion-card>
     <ion-card-header class="ion-text-center">
-      <ion-card-title> Dashboard
+      <ion-card-title (click)="show = !show"> Dashboard
       </ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-button size="small" slot="icon-only" fill="clear" style="float: right; margin-top: -45px;">
-        <ion-icon *ngIf="show"  name="caret-down-outline"></ion-icon>
-        <ion-icon *ngIf="!show" name="caret-back-outline"></ion-icon>
-      </ion-button>
+      <ion-buttons style="float: right; margin-top: -45px;">
+        <!-- <ion-button size="small" slot="icon-only" fill="clear">
+          <ion-icon *ngIf="show"  name="caret-down-outline"></ion-icon>
+          <ion-icon *ngIf="!show" name="caret-back-outline"></ion-icon>
+        </ion-button> -->
+        <ion-button size="small" slot="icon-only" fill="clear" (click)="show = !show">
+          <ion-icon *ngIf="show"  name="caret-down-outline"></ion-icon>
+          <ion-icon *ngIf="!show" name="caret-back-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
       <ion-grid class="ion-no-padding ion-no-margin clearfix" [hidden]="!show">
         <ion-row class="ion-no-padding ion-no-margin">
           <ion-col size="5" class="ion-no-padding ion-no-margin">
