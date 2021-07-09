@@ -29,6 +29,7 @@ export class DashboardPage implements OnInit {
   matrices = [];
   sucursales = [];
   agencias = [];
+  comportamientos = [];
 
   constructor(private util: UtilService, private api: ApiService) { }
 
@@ -39,6 +40,7 @@ export class DashboardPage implements OnInit {
     this.api.getData('matrices').then(data => this.matrices = data as any);
     this.api.getData('sucursales').then(data => this.sucursales = data as any);
     this.api.getData('agencias').then(data => this.agencias = data as any);
+    this.api.getData('comportamientos').then(data => this.comportamientos = data as any);
 
     this.getData();
   }
@@ -52,6 +54,9 @@ export class DashboardPage implements OnInit {
       }
       if (this.sucursal) {
         this.filterUrl = this.filterUrl + 'sucursal=' + this.sucursal + "&"
+      }
+      if (this.agencia) {
+        this.filterUrl = this.filterUrl + 'agencia=' + this.agencia + "&"
       }
       if (this.from) {
         this.filterUrl = this.filterUrl + 'from=' + this.from.toString().slice(0, 10) + "&"
