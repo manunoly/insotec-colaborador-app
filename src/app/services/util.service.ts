@@ -90,6 +90,21 @@ export class UtilService {
     return this.tmpData;
   }
 
+  getColor(valor) {
+    let color = "transparent";
+    switch (true) {
+      case valor < 1:
+        return "rgb(255,0,0)";
+      case valor < 2:
+        return "rgb(255,192,0)";
+      case valor < 3:
+        return "rgb(255,255,0)";
+      case valor < 4.1:
+        return "rgb(0,176,80)";
+      default:
+        return color;
+    }
+  }
 
   async presentAlert(messageD, headerD, buttonsD = ['Aceptar'], subHeaderD?, cssClassD = 'notificacionStyle', show = true) {
     let configuracion = { message: messageD, buttons: buttonsD };

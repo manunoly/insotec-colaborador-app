@@ -3,16 +3,15 @@
 <ion-content>
   <ion-card>
     <ion-card-header class="ion-text-center">
-      <ion-card-title (click)="show = !show"> Dashboard
+      <ion-card-title> Dashboard
       </ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
       <ion-buttons style="float: right; margin-top: -45px;">
-        <!-- <ion-button size="small" slot="icon-only" fill="clear">
-          <ion-icon *ngIf="show"  name="caret-down-outline"></ion-icon>
-          <ion-icon *ngIf="!show" name="caret-back-outline"></ion-icon>
-        </ion-button> -->
+        <ion-button [hidden]="!matriz && !sucursal && !agencia && !comportamiento && !drillDown" size="small" slot="icon-only" fill="clear" (click)="reset()">
+          <ion-icon name="refresh-outline"></ion-icon>
+        </ion-button>
         <ion-button size="small" slot="icon-only" fill="clear" (click)="show = !show">
           <ion-icon *ngIf="show"  name="caret-down-outline"></ion-icon>
           <ion-icon *ngIf="!show" name="caret-back-outline"></ion-icon>
@@ -97,6 +96,9 @@
             </div>
             <b>Comportamiento</b>
           </ion-col>
+          <ion-col size="2" *ngIf="drillDown" class="ion-text-center ion-no-padding ion-no-margin fullText">
+            <b class="ion-text-capitalize">{{drillDown}}</b>
+          </ion-col>
           <ion-col size="2" class="ion-text-center ion-text-end ion-no-padding ion-no-margin fullText">
             <div *ngIf="order=='promedio_evaluacion' && sortAsc" style="float: left;">
               <ion-icon name="caret-down-outline"></ion-icon>
@@ -110,11 +112,16 @@
       </ion-grid>
     </ion-item>
 
-    <ion-item *ngFor="let evaluacion of data" class="ion-no-padding ion-no-margin">
+    <ion-item *ngFor="let evaluacion of data" [style.--ion-item-background]="getColor(evaluacion?.valor_evaluacion)" class="ion-no-padding ion-no-margin">
+      <!-- <div slot="start" class= "vertical"></div> -->
+
       <ion-grid class="ion-no-padding ion-no-margin">
         <ion-row class="ion-no-padding ion-no-margin">
-          <ion-col class="ion-align-self-center ion-text-start ion-padding-start ion-no-padding ion-no-margin ion-text-capitalize">
+          <ion-col (click)="filtroComportamiento(evaluacion?.comportamiento_id, evaluacion?.sucursal_id,  evaluacion?.agencia_id,  evaluacion?.usuario_evaluador)" class="ion-align-self-center ion-text-start ion-padding-start ion-no-padding ion-no-margin ion-text-capitalize">
             {{evaluacion?.comportamiento}}
+          </ion-col>
+          <ion-col size="2" *ngIf="drillDown" class="ion-text-center ion-no-padding ion-no-margin">
+            {{evaluacion?.drillDown}}
           </ion-col>
           <ion-col size="2" class="ion-padding-end ion-text-end ion-no-padding ion-no-margin">
             {{evaluacion?.valor_evaluacion}}
