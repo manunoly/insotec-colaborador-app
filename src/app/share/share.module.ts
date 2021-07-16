@@ -1,3 +1,4 @@
+import { LeyendaColoresComponent } from './leyenda-colores/leyenda-colores.component';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -7,9 +8,9 @@ import { HeaderInsotecComponent } from './header-insotec/header-insotec.componen
 
 @NgModule({
     imports: [CommonModule, IonicModule, FormsModule],
-    declarations: [HeaderInsotecComponent],
-    exports: [HeaderInsotecComponent],
-    entryComponents: [HeaderInsotecComponent]
+    declarations: [HeaderInsotecComponent, LeyendaColoresComponent],
+    exports: [HeaderInsotecComponent,LeyendaColoresComponent],
+    entryComponents: [HeaderInsotecComponent,LeyendaColoresComponent]
 })
 
 export class SharedModule { }
