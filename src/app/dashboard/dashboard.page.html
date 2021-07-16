@@ -94,7 +94,10 @@
             <div *ngIf="order=='comportamiento' && !sortAsc" style="float: left;">
               <ion-icon name="caret-up-outline"></ion-icon>
             </div>
-            <b>Comportamiento</b>
+            <b>Comportamientos</b>
+            <ion-button size="small" fill="clear" (click)="coloresHelp()" style="margin-top: -10px; margin-left: -10px;">
+              <ion-icon name="help-outline"></ion-icon>
+            </ion-button>
           </ion-col>
           <ion-col size="3" *ngIf="drillDown" class="ion-text-center ion-no-padding ion-no-margin fullText">
             <b class="ion-text-capitalize">{{drillDown}}</b>
@@ -120,10 +123,10 @@
           <ion-col (click)="filtroComportamiento(evaluacion?.comportamiento_id, evaluacion?.sucursal_id,  evaluacion?.agencia_id,  evaluacion?.usuario_evaluador)" class="ion-align-self-center ion-text-start ion-padding-start ion-no-padding ion-no-margin ion-text-capitalize">
             {{evaluacion?.comportamiento}}
           </ion-col>
-          <ion-col size="3" *ngIf="drillDown" class="ion-text-center ion-no-padding ion-no-margin">
+          <ion-col size="3" *ngIf="drillDown" class="ion-text-center ion-no-padding ion-no-margin ion-align-self-center">
             {{evaluacion?.drillDown}}
           </ion-col>
-          <ion-col size="2" class="ion-padding-end ion-text-end ion-no-padding ion-no-margin">
+          <ion-col size="2" class="ion-padding-end ion-text-end ion-no-padding ion-no-margin ion-align-self-center">
             {{evaluacion?.valor_evaluacion}}
           </ion-col>
         </ion-row>

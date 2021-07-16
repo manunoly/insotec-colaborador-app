@@ -1,6 +1,8 @@
+import { LeyendaColoresComponent } from './../share/leyenda-colores/leyenda-colores.component';
 import { ApiService } from './../services/api.service';
 import { UtilService } from './../services/util.service';
 import { Component, OnInit } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,7 +36,7 @@ export class DashboardPage implements OnInit {
   comportamientos = [];
   drillDown;
 
-  constructor(private util: UtilService, private api: ApiService) { }
+  constructor(private util: UtilService, private api: ApiService,public popoverController: PopoverController) { }
 
   ngOnInit() {
     let end = new Date();
@@ -136,5 +138,15 @@ export class DashboardPage implements OnInit {
   getColor(value) {
     const color = this.util.getColor(value);
     return `linear-gradient(90deg, ${color} 2%, transparent 2%)`;
+  }
+
+  async coloresHelp(ev){
+    const popover = await this.popoverController.create({
+      component: LeyendaColoresComponent,
+      cssClass: '',
+      event: ev,
+      translucent: true
+    });
+    await popover.present();
   }
 }
