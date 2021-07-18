@@ -87,7 +87,7 @@
     <ion-item class="ion-no-padding ion-no-margin">
       <ion-grid class="ion-no-padding ion-no-margin">
         <ion-row class="ion-no-padding ion-no-margin">
-          <ion-col class="ion-align-self-center ion-text-start ion-padding-start ion-no-padding ion-no-margin ion-text-capitalize">
+          <ion-col class="ion-align-self-center ion-text-start ion-padding-start ion-no-padding ion-no-margin ion-text-capitalize" (click)="convertAndSortData('comportamiento', !sortAsc)">
             <div *ngIf="order=='comportamiento' && sortAsc" style="float: left;">
               <ion-icon name="caret-down-outline"></ion-icon>
             </div>
@@ -95,18 +95,24 @@
               <ion-icon name="caret-up-outline"></ion-icon>
             </div>
             <b>Comportamientos</b>
-            <ion-button size="small" fill="clear" (click)="coloresHelp()" style="margin-top: -10px; margin-left: -10px;">
+            <ion-button size="small" fill="clear" (click)="coloresHelp($event)" style="margin-top: -10px; margin-left: -10px;">
               <ion-icon name="help-outline"></ion-icon>
             </ion-button>
           </ion-col>
-          <ion-col size="3" *ngIf="drillDown" class="ion-text-center ion-no-padding ion-no-margin fullText">
-            <b class="ion-text-capitalize">{{drillDown}}</b>
-          </ion-col>
-          <ion-col size="2" class="ion-text-center ion-text-end ion-no-padding ion-no-margin fullText">
-            <div *ngIf="order=='promedio_evaluacion' && sortAsc" style="float: left;">
+          <ion-col size="3" *ngIf="drillDown" class="ion-text-center ion-no-padding ion-no-margin fullText" (click)="convertAndSortData('drillDown', !sortAsc)">
+            <div *ngIf="order=='drillDown' && sortAsc" style="float: left;">
               <ion-icon name="caret-down-outline"></ion-icon>
             </div>
-            <div *ngIf="order=='promedio_evaluacion' && !sortAsc" style="float: left;">
+            <div *ngIf="order=='drillDown' && !sortAsc" style="float: left;">
+              <ion-icon name="caret-up-outline"></ion-icon>
+            </div>
+            <b class="ion-text-capitalize">{{drillDown}}</b>
+          </ion-col>
+          <ion-col size="2" class="ion-text-center ion-text-end ion-no-padding ion-no-margin fullText" (click)="convertAndSortData('valor_evaluacion', !sortAsc)">
+            <div *ngIf="order=='valor_evaluacion' && sortAsc" style="float: left;">
+              <ion-icon name="caret-down-outline"></ion-icon>
+            </div>
+            <div *ngIf="order=='valor_evaluacion' && !sortAsc" style="float: left;">
               <ion-icon name="caret-up-outline"></ion-icon>
             </div>
             <b>Prom.</b>

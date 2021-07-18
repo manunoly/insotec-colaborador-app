@@ -11,7 +11,7 @@ import { PopoverController } from '@ionic/angular';
 })
 export class DashboardPage implements OnInit {
   data;
-  order = 'name';
+  order = 'comportamiento';
   sortAsc = true;
   customPopoverOptions: any = {
     //header: 'Hair Color',
@@ -88,6 +88,13 @@ export class DashboardPage implements OnInit {
     }
   }
 
+
+  convertAndSortData(field, sortAsc){
+    this.sortAsc = sortAsc;
+    this.order = field;
+    this.data.sort((a,b)=> sortAsc ? (a[field] > b[field] ? 1 : -1) : (a[field] < b[field] ? 1 : -1))
+  }
+
   async filter() {
     if (this.show) {
       this.getData();
@@ -133,6 +140,8 @@ export class DashboardPage implements OnInit {
     end.setMonth(end.getMonth() - 1);
     this.from = end.toISOString();
     this.getData();
+    this.order = 'comportamiento';
+    this.sortAsc = true;
   }
 
   getColor(value) {
