@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeyendaColoresComponent implements OnInit {
   leyendaValues = [
-    { valor: 0, descripcion: "Comportamiento no satisfactorio" },
-    { valor: 1, descripcion: "Comportamiento por mejorar" },
-    { valor: 2, descripcion: "Comportamiento aceptable" },
-    { valor: 3, descripcion: "Comportamiento satisfactorio" }
+    { valor: 0, descripcion: "No satisfactorio" },
+    { valor: 1, descripcion: "Por mejorar" },
+    { valor: 2, descripcion: "Aceptable" },
+    { valor: 3, descripcion: "Satisfactorio" }
   ];
 
   constructor(public util: UtilService) { }

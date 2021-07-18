@@ -44,7 +44,7 @@
       </ion-card-content>
     </ion-card>
 
-    <small *ngIf="matriz.length == 1"  class="ion-text-start ion-padding"><span class="matrizName">{{matriz.join(',')}}</span> (Matriz de Comportamiento)</small>
+    <small *ngIf="matriz.length == 1"  class="ion-text-start ion-padding"><span class="matrizName">{{matriz.join(',')}}</span></small>
 
     <ion-list>
       <ion-item class="ion-no-padding ion-no-margin">
@@ -54,13 +54,13 @@
               <b>Fecha</b>
             </ion-col>
             <ion-col size="2" *ngIf="matriz.length > 1" class="ion-no-padding ion-no-margin">
-              <b>Matriz</b>
+              <b>Cargo</b>
             </ion-col>
             <ion-col class="ion-align-self-center ion-text-center ion-no-padding ion-no-margin">
               <b>Evaluador</b>
             </ion-col>
             <ion-col size="2" class="ion-align-self-end ion-text-end ion-no-padding ion-no-margin">
-              <b>Nota</b>
+              <b>Nivel</b>
             </ion-col>
           </ion-row>
         </ion-grid>
