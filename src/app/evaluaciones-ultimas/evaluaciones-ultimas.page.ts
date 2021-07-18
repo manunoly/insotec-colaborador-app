@@ -76,8 +76,8 @@ export class EvaluacionesUltimasPage implements OnInit {
   getEvaluacionValor(columna, comportamientoId){
     if(this.data && this.data[columna]){
       const evaluacion = this.data[columna]?.comportamientos.find(x => x?.comportamiento?.id == comportamientoId);
-      if(evaluacion && evaluacion.valor_evaluacion){
-        return evaluacion.valor_evaluacion;
+      if(evaluacion){
+        return evaluacion?.valor_evaluacion;
       }
     }
     return '-';
