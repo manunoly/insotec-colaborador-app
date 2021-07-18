@@ -95,7 +95,7 @@
               <ion-icon name="caret-up-outline"></ion-icon>
             </div>
             <b>Comportamientos</b>
-            <ion-button size="small" fill="clear" (click)="coloresHelp($event)" style="margin-top: -10px; margin-left: -10px;">
+            <ion-button *ngIf="!drillDown"  size="small" fill="clear" (click)="coloresHelp($event)" style="margin-top: -10px; margin-left: -10px;">
               <ion-icon name="help-outline"></ion-icon>
             </ion-button>
           </ion-col>
