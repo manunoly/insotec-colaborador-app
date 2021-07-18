@@ -21,14 +21,16 @@ export class UtilService {
   async handleError(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
-      // client-side error
+      //console.log('client-side error');
       errorMessage = `Error: ${error.error.message}`;
     } else {
+      //console.log('server-side error');
       // server-side error
       if (error && error.error && error.error.message) {
         errorMessage = `${error.error.message}`;
       } else {
-        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        //errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        errorMessage = `Ha ocurrido un error inesperado Error: ${error.status}\n favor revisar su conexión y vuelva a intentar`;
       }
     }
 
