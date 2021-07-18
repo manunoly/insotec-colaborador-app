@@ -28,7 +28,7 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="9">
+      <ion-col offset="1" size="8">
         <h5 class="ion-padding-start"><b> Comportamiento </b></h5>
       </ion-col>
       <ion-col size="3" class="ion-text-center">
@@ -38,7 +38,10 @@
 
     <ion-row *ngFor="let item of data?.comportamientos"
       (click)="verComportamientoDetalle(item?.id)" class="ion-no-padding ion-no-margin">
-      <ion-col size="9" class="ion-no-padding ion-no-margin">
+      <ion-col size="1" class="ion-no-padding ion-no-margin ion-text-center">
+        <h5> {{item?.orden}} </h5>
+      </ion-col>
+      <ion-col size="8" class="ion-no-padding ion-no-margin">
         <p class="ion-no-padding ion-no-margin ion-padding-top ion-text-capitalize ion-text-lowercase ion-padding-start"> {{item?.comportamiento}} </p>
       </ion-col>
       <ion-col size="3" class="ion-no-padding ion-no-margin ion-text-center">
