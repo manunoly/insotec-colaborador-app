@@ -25,8 +25,7 @@
                 Sucursal
             </ion-label>
             <ion-select [(ngModel)]="sucursal" [interfaceOptions]="customPopoverOptions" interface="popover" mode="ios" class="ion-no-padding ion-no-margin" (ionChange)="filter()">
-              <ion-select-option value="">Todas</ion-select-option>
-              <ion-select-option *ngFor="let item of sucursales"  value="{{item?.id}}"> {{item?.nombre}} </ion-select-option>
+              <ion-select-option *ngFor="let item of sucursales" [attr.selected]="item?.id === sucursal ? true : null" value="{{item?.id}}"> {{item?.nombre}} </ion-select-option>
             </ion-select>
           </ion-item>
           </ion-col>
@@ -51,8 +50,7 @@
                 Agencia
               </ion-label>
               <ion-select [(ngModel)]="agencia" [interfaceOptions]="customPopoverOptions" interface="popover" mode="ios" class="ion-no-padding ion-no-margin" (ionChange)="filter()">
-                <ion-select-option value="">Todas</ion-select-option>
-                <ion-select-option *ngFor="let item of agencias"  value="{{item?.id}}"> {{item?.nombre}} </ion-select-option>
+                <ion-select-option *ngFor="let item of agencias" [attr.selected]="item?.id === agencia ? true : null" value="{{item?.id}}"> {{item?.nombre}} </ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
@@ -121,13 +119,14 @@
       </ion-grid>
     </ion-item>
 
-    <ion-item *ngFor="let evaluacion of data" [style.--ion-item-background]="getColor(evaluacion?.valor_evaluacion)" class="ion-no-padding ion-no-margin">
+    <ion-item *ngFor="let evaluacion of data; let i = index" [style.--ion-item-background]="getColor(evaluacion?.valor_evaluacion)" class="ion-no-padding ion-no-margin">
       <!-- <div slot="start" class= "vertical"></div> -->
 
       <ion-grid class="ion-no-padding ion-no-margin">
         <ion-row class="ion-no-padding ion-no-margin">
           <ion-col (click)="filtroComportamiento(evaluacion?.comportamiento_id, evaluacion?.sucursal_id,  evaluacion?.agencia_id,  evaluacion?.usuario_evaluador)" class="ion-align-self-center ion-text-start ion-padding-start ion-no-padding ion-no-margin ion-text-capitalize">
             {{evaluacion?.comportamiento}}
+            <span *ngIf="!this.matriz && !evaluacion?.drillDown">  <small>({{evaluacion?.matriz_nombre}}) </small></span>
           </ion-col>
           <ion-col size="3" *ngIf="drillDown" class="ion-text-center ion-no-padding ion-no-margin ion-align-self-center">
             {{evaluacion?.drillDown}}

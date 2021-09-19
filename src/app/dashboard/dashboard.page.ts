@@ -3,6 +3,7 @@ import { ApiService } from './../services/api.service';
 import { UtilService } from './../services/util.service';
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
+import { AuthService } from './../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,9 +23,9 @@ export class DashboardPage implements OnInit {
   show = false;
 
   filterUrl = "";
-  matriz;
-  sucursal;
-  agencia;
+  matriz = '';
+  sucursal = '';
+  agencia = '';
   comportamiento;
   evaluador;
   usuario_evaluador;
@@ -36,15 +37,39 @@ export class DashboardPage implements OnInit {
   comportamientos = [];
   drillDown;
 
-  constructor(private util: UtilService, private api: ApiService,public popoverController: PopoverController) { }
+  constructor(private util: UtilService, private api: ApiService,public popoverController: PopoverController, private auth: AuthService) { }
 
   ngOnInit() {
     let end = new Date();
     end.setMonth(end.getMonth() - 1);
     this.from = end.toISOString();
-    this.api.getData('matrices').then(data => this.matrices = data as any);
-    this.api.getData('sucursales').then(data => this.sucursales = data as any);
-    this.api.getData('agencias').then(data => this.agencias = data as any);
+    this.api.getData('matrices')
+      .then(data => {
+        this.matrices = data as any
+      }).catch();
+
+    this.api.getData('sucursales')
+      .then(data => {
+        if(this.auth.tienePermiso('gerenteagencia') || this.auth.tienePermiso('gerentesucursal')){
+            this.sucursal = data[0] && data[0]['id'] ? data[0]['id'].toString() : '';
+        }
+        this.sucursales = data as any;
+        if(this.sucursales && this.sucursales.length > 1){
+          this.sucursal = '*';
+          this.sucursales.unshift({id: '*', nombre: 'Todas'})
+        }
+      }).catch();
+
+    this.api.getData('agencias').then(data => {
+      if(this.auth.tienePermiso('gerenteagencia')){
+        this.agencia =  data[0] && data[0]['id'] ? data[0]['id'].toString() : '';
+      }
+      this.agencias = data as any
+      if(this.agencias && this.agencias.length > 1){
+        this.agencia = '*';
+        this.agencias.unshift({id: '*', nombre: 'Todas'})
+      }
+    }).catch();
 
     this.getData();
   }
@@ -59,10 +84,10 @@ export class DashboardPage implements OnInit {
       if (this.comportamiento) {
         this.filterUrl = this.filterUrl + 'comportamiento=' + this.comportamiento + "&"
       }
-      if (this.sucursal) {
+      if (this.sucursal && this.sucursal != '*') {
         this.filterUrl = this.filterUrl + 'sucursal=' + this.sucursal + "&"
       }
-      if (this.agencia) {
+      if (this.agencia && this.agencia != '*') {
         this.filterUrl = this.filterUrl + 'agencia=' + this.agencia + "&"
       }
       if (this.drillDown) {
@@ -88,6 +113,12 @@ export class DashboardPage implements OnInit {
     }
   }
 
+  showMatrizName(position:number):boolean {
+    if(position == 0 || this.data[position]['matriz_nombre'] != this.data[position - 1]['matriz_nombre']){
+      return true;
+    }
+    return false;
+  }
 
   convertAndSortData(field, sortAsc){
     this.sortAsc = sortAsc;
@@ -130,8 +161,8 @@ export class DashboardPage implements OnInit {
     this.show = false;
     this.drillDown = "";
     this.matriz = "";
-    this.sucursal = "";
-    this.agencia = "";
+    this.sucursal = "*";
+    this.agencia = "*";
     this.comportamiento = "";
     this.from = "";
     this.evaluador = "";
